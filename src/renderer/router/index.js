@@ -11,9 +11,9 @@ export default new Router({
       component: require('@/components/Dashboard')
     },
     {
-      path: '/landing-page',
-      name: 'landing-page',
-      component: require('@/components/LandingPage')
+      path: '/manual-control',
+      name: 'manual-control',
+      component: require('@/components/ManualControl')
     },
     {
       path: '*',

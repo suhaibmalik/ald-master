@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "serialport": "^6.0.4",
     "vue": "^2.4.2",
     "vue-chartist": "^2.1.0",
     "vue-electron": "^1.0.6",
@@ -54,7 +55,6 @@
     "multispinner": "^0.2.1",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
-    "serialport": "^5.0.0",
     "style-loader": "^0.18.1",
     "url-loader": "^0.5.7",
     "vue-html-loader": "^1.2.2",

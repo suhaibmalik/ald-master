@@ -1,226 +1,92 @@
 <template>
     <div id="wrapper">
-        <main class="main">
-
-            <div class="Dashboard__Summaries">
-
-                <div class="Dashboard__Summary">
-                    <div class="Dashboard__Summary-Info">
-                        Temperatures
-                    </div>
-                    <div class="Dashboard__Summary-Chart">
-                        <chartist
-                                type="Line"
-                                id="temp-chart"
-                                :data="tempChartData"
-                                :options="tempChartOptions" >
-                        </chartist>
-                    </div>
-                </div>
-
-                <div class="Dashboard__Summary">
-                    <div class="Dashboard__Summary-Info">
-                        Gas Flow
-                    </div>
-                    <div class="Dashboard__Summary-Chart">
-                        <chartist
-                                type="Line"
-                                id="temp-chart"
-                                :data="tempChartData"
-                                :options="tempChartOptions" >
-                        </chartist>
-                    </div>
-                </div>
-
-                <div class="Dashboard__Summary">
-                    <div class="Dashboard__Summary-Info">
-                        Pressure
-                    </div>
-                    <div class="Dashboard__Summary-Chart">
-                        <chartist
-                                type="Line"
-                                id="temp-chart"
-                                :data="tempChartData"
-                                :options="tempChartOptions" >
-                        </chartist>
-                    </div>
-                </div>
+        <h2>Dashboard</h2>
+        <hr class="hr" />
+        <div class="Dashboard">
+            <div class="Dashboard__panel">
+                <div class="Panel__value">100 <span class="Panel__unit">°C</span></div>
+                <div class="Panel__description">Chamber Avg. Temp.</div>
+                <div class="Panel__stats">Sources: 6</div>
             </div>
-
-            <div class="Dashboard__Focus">
-                <chartist
-                        style="height: 100%"
-                        type="Line"
-                        :data="chartData"
-                        :options="chartOptions" >
-                </chartist>
+            <div class="Dashboard__panel">
+                <div class="Panel__value">121 <span class="Panel__unit">°C</span></div>
+                <div class="Panel__description">Gas Avg. Temp.</div>
+                <div class="Panel__stats">Sources: 10</div>
             </div>
-
-            <div class="Dashboard__Process">
-                <h4>Growth in Progress</h4>
-                <div class="Dashboard__Process-Steps">
-                    <div class="Dashboard__Process-Step">Temp</div>
-                    <div class="Dashboard__Process-Step">Temp</div>
-                    <div class="Dashboard__Process-Step">Temp</div>
-                </div>
-                <div class="Dashboard__Process-Summary">
-                    test
-                </div>
+            <div class="Dashboard__panel">
+                <div class="Panel__value">1.2 <span class="Panel__unit">E-3 Torr</span></div>
+                <div class="Panel__description">Chamber Pressure</div>
+                <div class="Panel__stats">Sources: 1</div>
             </div>
-
-        </main>
-        <div class="side">
-            <div class="mfc">
-                <h3>MFC Control</h3>
-                <p>MFC 1 <input type="number"> sccm | Actual: 0</p>
-                <p>MFC 2 <input type="number"> sccm | Actual: 0</p>
-                <input type="submit">
-            </div>
-            <div class="heater">
-                <h3>Heater Control</h3>
-                <p>Zone 1 <input type="number"> C | Actual: 0 C</p>
-                <p>Zone 2 <input type="number"> C | Actual: 0 C</p>
-                <p>Zone 3 <input type="number"> C | Actual: 0 C</p>
-                <p>Zone 4 <input type="number"> C | Actual: 0 C</p>
-                <p>Zone 5 <input type="number"> C | Actual: 0 C</p>
-                <p>Zone 6 <input type="number"> C | Actual: 0 C</p>
-                <p>Zone 7 <input type="number"> C | Actual: 0 C</p>
-                <input type="submit">
+            <div class="Dashboard__panel">
+                No experiment in progress.
             </div>
         </div>
-
     </div>
 </template>
 
-<style lang="sass">
-    #wrapper
-        flex-grow: 1
-        display: grid
-        grid-template-columns: auto 300px
-        /*grid-template-rows: 200px auto*/
-        grid-template-areas: "main side"
-        height: 100vh
+<style lang="sass" scoped>
 
-    .main
-        display: grid
-        grid-template: 1fr 4fr 2fr / 1fr
-
-    .side
-        grid-template: 1fr / 1fr
-        padding-right: 1em
-        overflow-y: scroll
-
-    input
-        background: #47484b
-        outline: 0
+    .hr
+        display: block
+        height: 1px
         border: 0
-        font-size: 1em
-        color: white
-        padding: .5em
+        border-top: 1px solid rgba(255,255,255,.1)
+        margin: 1em 0
+        padding: 0
 
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button
-        -webkit-appearance: none
-        -moz-appearance: none
-        appearance: none
-        margin: 0
-
-    .Dashboard__Summaries
+    .Dashboard
         display: grid
-        height: 50px
-        grid-template: 1fr / 1fr 1fr 1fr
+        grid-template: 1fr / 1fr 1fr 1fr 2fr
+        grid-gap: 2em
 
-    .Dashboard__Summary
-        display: grid
-        grid-template: 1fr / 1fr 3fr
-        grid-template-areas: "info chart"
+        &__panel
+            border-radius: 5px
+            padding: 1em
+            background-color: rgba(68, 70, 79, 0.5)
 
-    .Dashboard__Summary-Info
-        grid-area: info
-        display: flex
-        align-items: center
-        justify-content: center
+    .Panel
 
-    .Dashboard__Summary-Chart
-        grid-area: chart
-        display: flex
-        align-items: center
-        justify-content: center
+        &__value
+            color: white
+            font-weight: bold
+            font-size: 1.75em
 
-    .Dashboard__Process
-        display: grid
-        grid-template: 1fr / 4fr 1fr
-        grid-template-areas: "title title" ""
+        &__unit
+            font-weight: normal
+            font-size: .75em
 
-    .ct-line
-        stroke: limegreen
-        stroke-width: 2px
-        /*stroke-dasharray: 10px 20px*/
+        &__description
+            color: rgba(255,255,255,.5)
+            font-size: .75em
 
-    #temp-chart .ct-line
-        stroke: limegreen
-        /*stroke-width: 5px !important*/
+        &__stats
+            font-size: .75em
+            margin-top: 1em
 
 </style>
 
 <script>
-//    import SerialPort from 'serialport'
 
     export default {
         name: 'dashboard',
         data() {
             return {
-                tempChartData: {
-                    labels: ["A", "B", "C"],
-                    series:[[1, 3, 2], [4, 6, 5], [1.2, 3.3, 1]]
-                },
-                tempChartOptions: {
-                    showPoint: false,
-                    lineSmooth: true,
-                    showLabel: false,
-                    axisX: {
-                        showGrid: false,
-                        showLabel: false,
-                        offset: 0
-                    },
-                    axisY: {
-                        showGrid: false,
-                        showLabel: false,
-                        offset: 0
-                    },
-                    chartPadding: 10,
-                    height: 70,
-                },
-                chartData: {
-                    labels: ["A", "B", "C"],
-                    series:[[1, 3, 2, 5], [4, 6, 5, 4], [1.2, 3.3, 1, 1]]
-                },
-                chartOptions: {
-                    axisX: {
-//                        showGrid: false,
-//                        showLabel: false,
-                        offset: 0
-                    },
-                    axisY: {
-//                        showGrid: false,
-//                        showLabel: false,
-                        offset: 0
-                    },
-                },
+                value: 0
             }
         },
-//        components: { SystemInformation },
-//        methods: {
-//            open (link) {
-//                this.$electron.shell.openExternal(link)
-//            },
-//            connect () {
-//              const port = new SerialPort('dev/tty-usbserial1')
-//            }
-//        }
+
+        methods: {
+            poll() {
+                const Readline = this.$serial.parsers.Readline;
+                const port = new this.$serial('COM4', {
+                    baudRate: 9600,
+                });
+                const parser = new Readline();
+                port.pipe(parser);
+                parser.on('data', console.log);
+            }
+        }
     }
+
 </script>
-
-<style>
-
-</style>
